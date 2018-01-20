@@ -34,6 +34,7 @@ let convertFromUSDtoBTC = amount => {
     coinbaseConversion("USD", "BTC")
       .then(resp => {
         let resultingBTCAmount = amount * resp.rate;
+        console.log(`Resulting BTC Amount ${resultingBTCAmount}`);
         resolve(resultingBTCAmount);
       })
       .catch(err => {
@@ -47,12 +48,17 @@ let convertFromBTCtoUSD = amount => {
     coinbaseConversion("BTC", "USD")
       .then(resp => {
         let resultingUSDAmount = amount * resp.rate;
+        console.log(`Resulting USD Amount ${resultingUSDAmount}`);
         resolve(resultingUSDAmount);
       })
       .catch(err => {
         reject("Error converting from USD to BTC");
       });
   });
+};
+
+let calcTotalCoin = (rate, amount) => {
+  return amount / rate;
 };
 
 let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
@@ -63,7 +69,10 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
           resolve(convertFromBTCtoUSD(resultingBTCAmount));
         } else {
           bittrexConversion("BTC", toCoin).then(resp => {
-            resolve(resp.rate * resultingBTCAmount);
+            console.log(
+              `Rate: ${resp.rate} - Resulting BTC Amount: ${resultingBTCAmount}`
+            );
+            resolve(calcTotalCoin(resp.rate, resultingBTCAmount));
           });
         }
       });
@@ -75,7 +84,7 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
       } else {
         bittrexConversion(fromCoin, toCoin)
           .then(resp => {
-            resolve(resp.rate * fromAmount);
+            resolve(calcTotalCoin(resp.rate, fromAmount));
           })
           .catch(err => {
             reject("Error in convertFromCoinToCoin1");
@@ -84,7 +93,7 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
     } else {
       bittrexConversion(fromCoin, toCoin)
         .then(resp => {
-          resolve(resp.rate * fromAmount);
+          resolve(calcTotalCoin(resp.rate, fromAmount));
         })
         .catch(err => {
           reject("Error in convertFromCoinToCoin2");
