@@ -2,8 +2,8 @@
 
 # dependencies
 /node_modules
-/dist
-/.cache
+**/**/dist/
+**/**/.cache
 **/**/node_modules
 
 # testing

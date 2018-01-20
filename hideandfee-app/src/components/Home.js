@@ -7,7 +7,7 @@ class Home extends Component {
       <div className="flex flex-col">
         <div className="flex flex-col justify-around items-center m-4 h-24">
           <span className="text-4xl"> Hide&Fee </span>
-          <span className="text-base"> Really enticing copy about our app!  </span>
+          <span className="text-base"> Really enticing copy about our app! </span>
         </div>
         <div className="flex flex-col justify-around items-center m-4">
           <Link to="/buy" className="btn">
