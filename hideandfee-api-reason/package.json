@@ -1,0 +1,23 @@
+{
+  "name": "hideandfee-api",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "npm run-script build && node src/index.bs.js",
+    "clean": "bsb -clean-world"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "blubeta",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^2.1.0"
+  },
+  "dependencies": {
+    "bs-express": "0.0.6",
+    "bs-fetch": "^0.2.0",
+    "coinbase": "^2.0.7",
+    "express": "^4.16.2"
+  }
+}
