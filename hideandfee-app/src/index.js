@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import './styles.css';
 
-import App from './components/App';
+import App from './pages/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const MOUNT_NODE = document.getElementById('root');

@@ -1,10 +1,36 @@
 @tailwind preflight;
 @tailwind utilities;
 
-.btn {
-  @apply .border-2 .bg-transparent .font-semibold .border-blue .rounded .py-4 .px-8 .text-blue .m-4 .no-underline;
+.app{
+  @apply .h-screen .m-4 .mt-8;
+  background-color: #212932;
+  color: white;
 }
 
 .card {
   @apply .flex .flex-col .justify-around .items-center .m-4;
+}
+
+.card-dark {
+  @apply .card;
+  background-color: #161c23;
+}
+
+.btn {
+  @apply .border-2 .bg-transparent .font-semibold .rounded .py-4 .px-8 .m-4 .no-underline;
+  border-color:#45b1a3;
+  color:#45b1a3;
+  transition: all .2s linear;
+}
+
+.btn:hover {
+  @apply .btn;
+  background-color: #45b1a3;
+  border-color: #45b1a3;
+  color: white;
+}
+
+.text-field * {
+  color: #45b1a3;
+  border-color: #45b1a3;
 }
