@@ -1,0 +1,10 @@
+@tailwind preflight;
+@tailwind utilities;
+
+.btn {
+  @apply .border-2 .bg-transparent .font-semibold .border-blue .rounded .py-4 .px-8 .text-blue .m-4 .no-underline;
+}
+
+.card {
+  @apply .flex .flex-col .justify-around .items-center .m-4;
+}
