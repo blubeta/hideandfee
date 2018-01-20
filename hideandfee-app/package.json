@@ -3,13 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD:hideandfee-app/package.json
     "axios": "^0.17.1",
     "coinbase": "^2.0.7",
-=======
     "material-ui": "^0.20.0",
     "material-ui-icons": "^1.0.0-beta.17",
->>>>>>> mass attack:package.json
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
