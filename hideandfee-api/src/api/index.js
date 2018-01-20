@@ -12,7 +12,7 @@ export default ({ config, db }) => {
       coinbaseAPI
         .getExchangeRates(fromCoin)
         .then(resp => {
-          resolve({ version, resp });
+          resolve({ rate: parseFloat(resp.data.rates[toCoin]) });
         })
         .catch(err => {
           reject(err);
@@ -27,7 +27,7 @@ export default ({ config, db }) => {
         .then(resp => {
           let buy = resp.data.result.buy[0].Rate;
           let sell = resp.data.result.sell[0].Rate;
-          resolve({ buy, sell });
+          resolve({ rate: buy });
         })
         .catch(err => {
           reject(err);
@@ -44,13 +44,21 @@ export default ({ config, db }) => {
       (fromCoin == "USD" && toCoin == "BTC") ||
       (fromCoin == "BTC" && toCoin == "USD")
     ) {
-      coinbaseConversion(fromCoin, toCoin).then(rate => {
-        res.json(rate);
-      });
+      coinbaseConversion(fromCoin, toCoin)
+        .then(rate => {
+          res.json(rate);
+        })
+        .catch(err => {
+          res.json({ err: "Invalid Pair" });
+        });
     } else {
-      bittrexConversion(fromCoin, toCoin).then(rate => {
-        res.json(rate);
-      });
+      bittrexConversion(fromCoin, toCoin)
+        .then(rate => {
+          res.json(rate);
+        })
+        .catch(err => {
+          res.json({ err: "Invalid Pair" });
+        });
     }
   });
 
