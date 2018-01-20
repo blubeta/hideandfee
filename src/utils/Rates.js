@@ -1,4 +1,4 @@
-import ExchangeCoinLists from "ExchangeCoinLists";
+import ExchangeFees from "ExchangeFees";
 
 let rates = {};
 

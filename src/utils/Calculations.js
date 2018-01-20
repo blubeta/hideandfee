@@ -44,6 +44,6 @@ const total = {
 };
 
 module.export = {
-  fees: fees,
-  total: total
+  getFees: fees,
+  calcTotal: total
 };
