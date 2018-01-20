@@ -1,30 +1,35 @@
-import ExchangeFees from "ExchangeFees";
-import ExchangeRate from "ExchangeRate";
+import ExchangeFees from 'ExchangeFees';
+import ExchangeRate from 'ExchangeRate';
 
 /* Calculating Fees */
 
-let fromUSDToBTCFee = () => Rates["BTC"]["USD"];
+let coinbaseFees = ExchangeFees['Coinbase']
+let coinbaseRate = ExchangeRate['Coinbase']
+let bittrexFees  = ExchangeFees['Bittrex']
+let bittrexRate  = ExchangeRate['Bittrex']
 
-let fromBTCToUSDFee = () => Rates["USD"]["BTC"];
+let fromUSDToBTCFee = () => coinbaseFees['BTC']['USD'];
+
+let fromBTCToUSDFee = () => coinbaseFees['USD']['BTC'];
 
 let fromCoinToCoinFee = (fromCoin, toCoin) => {
-  return Rates[fromCoin.toUpperCase][toCoin.toUperCase];
+  return bittrexFees[fromCoin.toUpperCase][toCoin.toUperCase];
 };
 
 /* Calculating Totals */
 
 let fromUSDToBTC = amount => {
-  return amount / ExchangeRate["BTC"]["USD"] + fromUSDToBTCFee();
+  return amount / coinbaseRate['BTC']['USD'] + fromUSDToBTCFee();
 };
 
 let fromBTCToUSD = amount => {
-  return amount / ExchangeRate["USD"]["BTC"] + fromBTCToUSDFee();
+  return amount / coinbaseRate['USD']['BTC'] + fromBTCToUSDFee();
 };
 
 let fromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
   let fee = fromCoinToCoinFee(fromCoin, toCoin);
   return (
-    fromAmount / ExchangeRate[fromCoin.toUpperCase()][toCoin.toUpperCase()] +
+    fromAmount / bittrexRate[fromCoin.toUpperCase()][toCoin.toUpperCase()] -
     fee
   );
 };
