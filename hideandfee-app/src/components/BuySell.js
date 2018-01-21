@@ -9,6 +9,7 @@ class BuySell extends Component {
       transaction: null,
       baseCurrency: null,
       exchangeCurrency: null,
+      exchangeAmount: 0,
       isEditing: true,
     }
   }
@@ -19,7 +20,7 @@ class BuySell extends Component {
 
     return (
       <div className="flex flex-col">
-        <div className="card-dark">
+        <div className="card">
           <span className="card-title"> Would you like to buy or sell a coin? </span>
           <div className="flex justify-around items-center mt-4">
             <div
@@ -65,8 +66,15 @@ class BuySell extends Component {
               <option> AUTO </option>
               <option> MACHINE </option>
             </select>
-            <input type="number" placeholder="Amount" className="styled-input" />
+            <input
+              type="number"
+              value={ this.state.exchangeAmount }
+              className="styled-input"
+            />
           </div>
+        </div>
+        <div className="active-btn flex justify-center m-4">
+          <span> Finish </span>
         </div>
       </div>
     );
