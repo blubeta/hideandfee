@@ -195,7 +195,7 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
 
               adjustedBTCAmount = resp.rate * fromAmount;
               feeAmount = fromAmount * fees.tradingFees.Bittrex.percent;
-              BTCTradingFee = CoinToBTC(feeAmount, resp.rate);
+              BTCTradingFee = feeAmount * resp.rate;
 
               resultSteps.push(
                 formatResultSteps(
