@@ -16,7 +16,7 @@ class Results extends Component {
     return(
       <div className="flex flex-col items-center">
         <span className="result-header"> Results </span>
-        <div className="result-row-section px-8" style={{ width: '75%' }}>
+        <div className="result-legend">
           <span className="text-left"> Trade Details </span>
           <span className="text-right"> Fees </span>
         </div>

@@ -2,13 +2,22 @@
 @tailwind utilities;
 body{
   font-family: 'Lato', sans-serif;
+  background-color: #212932;
   z-index: 1;
+}
+#root {
+  @apply .flex .justify-center;
 }
 .app{
   @apply .min-h-screen;
   background-color: #212932;
+  width: 100%;
   color: white;
   z-index: 1;
+}
+
+@screen md {
+   .card-dark, .result-legend{ width: 60%;  }
 }
 
 .card {
@@ -40,7 +49,7 @@ body{
 }
 
 .totals-footer {
-  @apply .w-full .flex .justify-around .fixed .pin-b border-b-2 border-t-2 .items-center;
+  @apply .w-full .flex .justify-around  border-b-2 border-t-2 .items-center;
   background-color: #161c23;
   border-color: #45b1a3;
   height: 10rem;
@@ -100,6 +109,12 @@ body{
 .result-row-section {
   @apply .w-full .flex .justify-between .items-center;
   height: 50%;
+}
+.result-legend {
+  @apply .flex .justify-between .items-center .px-8;
+}
+.result-legend span{
+  @apply .mx-4;
 }
 .results-secondary {
   @apply .text-sm;
