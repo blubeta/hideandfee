@@ -75,22 +75,24 @@ body{
   z-index: 1;
 }
 
-.results-header {
-  @apply .flex .justify-center .w-full;
+.result-header {
+  @apply .my-4;
   color: #45b1a3;
-  font-size: 2em;
-  text-decoration: underline;
-  z-index: 1;
+  font-size: 1.5em;
 }
 
 .result-row {
-  @apply .w-full .flex .flex-col .px-4;
-  height: 100px;
-  z-index: 1;
+  @apply .flex .flex-col .px-8 .items-center .my-4;
+  height: 75px;
+  width: 75%;
+  background-color: #161c23;
 }
 .result-row-section {
-  @apply .w-full .flex .justify-center;
-  z-index: 1;
+  @apply .w-full .flex .justify-between .items-center;
+  height: 50%;
+}
+.results-secondary {
+  @apply .text-sm;
 }
 
 .btn {
