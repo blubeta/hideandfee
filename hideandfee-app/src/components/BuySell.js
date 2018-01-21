@@ -6,6 +6,7 @@ import { setSteps,
          setCoinIHave,
          setCoinIWant,
          setAmount,
+         setShowResults,
          }           from '../Redux/actions'
 
 class BuySell extends Component {
@@ -23,6 +24,12 @@ class BuySell extends Component {
       exchangeConversionUSD: 0,
       exchangeConversion: 0,
       isEditing: true,
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isEditing != this.props.isEditing){
+      this.props.dispatch(setShowResults(nextState.isEditing))
     }
   }
 

@@ -1,6 +1,7 @@
 const prodState = {
   total: 0.00,
   isHardwareWallet: false,
+  showResults: false,
   coinIHave: "",
   coinIWant: "",
   amount: 0,
@@ -38,6 +39,11 @@ const reducer = (state = prodState, { type, ...action }) => {
       return {
         ...state,
         amount: action.amount
+      };
+    case "SET_SHOW_RESULTS":
+      return {
+        ...state,
+        showResults: action.showResults
       };
     default:
       return state;

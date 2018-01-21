@@ -39,3 +39,10 @@ export const setAmount = (amount) =>  {
     amount: amount,
   }
 }
+
+export const setShowResults = (showResults) =>  {
+  return {
+    type: "SET_SHOW_RESULTS",
+    showResults: showResults,
+  }
+}

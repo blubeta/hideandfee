@@ -27,7 +27,10 @@ class Results extends Component {
 }
 
 function mapStateToProps(state) {
-  return { steps: state.steps }
+  return {
+    steps: state.steps,
+    showResults: state.showResults
+  }
 }
 
 export default connect(mapStateToProps)(Results);
