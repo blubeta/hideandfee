@@ -81,7 +81,13 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
   /* lelz -> this needs major restructure =P Don't judge */
 
   let resultSteps = [];
-  let feeAmount, totalToCoins, USDToBTCRate, BTCToUSDRate;
+  let feeAmount,
+    totalToCoins,
+    USDToBTCRate,
+    BTCToUSDRate,
+    adjustedBTCAmount,
+    adjustedUSDAmount,
+    BTCTradingFee;
 
   let BTCToUSD = (amount, rate) => {
     return amount * rate;
@@ -187,8 +193,6 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
         if (toCoin == "USDT" || toCoin == "BTC") {
           /* fromCoin needs to go as second parameters as exchanges don't treat it 2 ways */
 
-          let adjustedBTCAmount, adjustedUSDAmount, BTCTradingFee;
-
           bittrexConversion("BTC", fromCoin)
             .then(resp => {
               console.log(`Rate for ${fromCoin} -> BTC: ${resp.rate}`);
@@ -253,17 +257,18 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
             .then(resp => {
               feeAmount = fromAmount * fees.tradingFees.Bittrex.percent;
               totalToCoins = calcTotalCoin(resp.rate, fromAmount - feeAmount);
+              BTCTradingFee = feeAmount * resp.rate;
 
               resultSteps.push(
                 formatResultSteps(
                   `${fromCoin} to ${toCoin}`,
                   "Bittrex Trading",
-                  CoinToBTC(feeAmount, resp.rate),
-                  BTCToUSD(feeAmount, BTCToUSDRate),
+                  BTCTradingFee,
+                  BTCToUSD(BTCTradingFee, BTCToUSDRate),
                   totalToCoins
                 )
               );
-              resolve(calcTotalCoin(resp.rate, fromAmount));
+              resolve(resultSteps);
             })
             .catch(err => {
               reject("Error in convertFromCoinToCoin2");
