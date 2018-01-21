@@ -51,6 +51,13 @@ class BuySell extends Component {
 
     const buyOrSell = this.state.transaction ? this.state.transaction : '...';
     const withOrTo  = this.state.transaction && this.state.transaction == 'buy' ? 'with' : 'to';
+    let isDisabled;
+    if ( [this.props.coinIHave, this.props.coinIWant, this.props.amount].every((val) => (val)) ){
+      isDisabled = false;
+    } else {
+      isDisabled = true;
+    }
+
     console.log(this.state.isEditing)
     return (
       <div>
@@ -117,7 +124,7 @@ class BuySell extends Component {
                 </div>
               </div>
               <div
-                className="active-btn flex justify-center m-8"
+                className={`active-btn flex justify-center m-8 ${ isDisabled ? 'disabled' : '' }`}
                 onClick={ () => { this.submitSteps() } }
               >
                 <span> Calculate </span>

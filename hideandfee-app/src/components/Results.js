@@ -10,16 +10,23 @@ class Results extends Component {
   render(){
     return(
       <div>
-        { this.props.steps ? this.props.steps.map((step) => {
-
+      <div className="result-header">
+        <span> Results </span>
+      </div>
+        { this.props.steps && this.props.steps.map((step) => {
             return (
-              <div>
-                ISSA MEME
+              <div className="result-row">
+                <div className="result-row-section">
+                  <span> { step.title } </span>
+                  <span> { step.fiatPrice.toFixed(2) } </span>
+                </div>
+                <div className="result-row-section">
+                  <span> { step.description } </span>
+                  <span> { step.btcPrice } </span>
+                </div>
               </div>
             )
           })
-            :
-          []
         }
       </div>
     )
