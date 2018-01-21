@@ -46,3 +46,10 @@ export const setShowResults = (showResults) =>  {
     showResults: showResults,
   }
 }
+
+export const setBuyOrSell = (buyOrSell) =>  {
+  return {
+    type: "SET_BUY_OR_SELL",
+    buyOrSell: buyOrSell,
+  }
+}

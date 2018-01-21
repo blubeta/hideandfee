@@ -2,6 +2,7 @@ const prodState = {
   total: 0.00,
   isHardwareWallet: false,
   showResults: false,
+  buyOrSell: "buy",
   coinIHave: "",
   coinIWant: "",
   amount: 0,
@@ -44,6 +45,11 @@ const reducer = (state = prodState, { type, ...action }) => {
       return {
         ...state,
         showResults: action.showResults
+      };
+    case "SET_BUY_OR_SELL":
+      return {
+        ...state,
+        buyOrSell: action.buyOrSell
       };
     default:
       return state;

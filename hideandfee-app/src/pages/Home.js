@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Particles from 'react-particles-js'
 import ParticleSettings from '../assets/particleSettings'
+import { connect }        from 'react-redux';
+import { setBuyOrSell } from '../Redux/actions'
 
 class Home extends Component {
   render() {
@@ -19,10 +21,10 @@ class Home extends Component {
           <span className="text-base subtitle"> Find the hidden fees in every cryptocurrency transaction.</span>
         </div>
         <div className="card">
-          <Link to="/dashboard" className="btn mb-8">
+          <Link to="/dashboard" className="btn mb-8" onClick={()=>{this.props.dispatch(setBuyOrSell("buy"))}}>
             Buy a Coin
           </Link>
-          <Link to="/dashboard" className="btn">
+          <Link to="/dashboard" className="btn" onClick={()=>{this.props.dispatch(setBuyOrSell("sell"))}}>
             Sell a Coin
           </Link>
         </div>
@@ -31,4 +33,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);

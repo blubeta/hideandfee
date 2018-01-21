@@ -57,8 +57,8 @@ class BuySell extends Component {
 
   render() {
 
-    const buyOrSell = this.state.transaction ? this.state.transaction : '...';
-    const withOrTo  = this.state.transaction && this.state.transaction == 'buy' ? 'with' : 'to';
+    const buyOrSell = this.props.buyOrSell;
+    const withOrTo  = this.props.buyOrSell && this.props.buyOrSell == 'buy' ? 'with' : 'to';
     let isDisabled;
     if ( [this.props.coinIHave, this.props.coinIWant, this.props.amount].every((val) => (val)) ){
       isDisabled = false;
@@ -72,23 +72,7 @@ class BuySell extends Component {
         {
           this.state.isEditing ? (
             <div className="flex flex-col">
-              <div className="card">
-                <span className="card-title"> Would you like to buy or sell a coin? </span>
-                <div className="flex justify-around items-center mt-4">
-                  <div
-                    className={ this.state.transaction == 'buy' ? 'active-btn' : 'btn' }
-                    onClick={ () => this.setState({ transaction: 'buy' }) }
-                  >
-                    Buying
-                  </div>
-                  <div
-                    className={ this.state.transaction == 'sell' ? 'active-btn' : 'btn' }
-                    onClick={ () => this.setState({ transaction: 'sell' }) }
-                  >
-                    Selling
-                  </div>
-                </div>
-              </div>
+            <span className="text-4xl m-8 text-center"> {`What cryptocurrency`} <br/> {`are you looking to ${buyOrSell || "buy"}`}? </span>
               <div className="card-dark">
                 <span>
                   I Have
@@ -128,7 +112,8 @@ class BuySell extends Component {
             </div>
           ) : (
           <div className="buy-sell-header">
-            <span> {buyOrSell} {this.props.coinIWant} {withOrTo} {this.props.amount} {this.props.coinIHave} </span>
+          {console.log(this.props.buyOrSell)}
+            <span> {this.props.buyOrSell}ing {this.props.coinIWant} {withOrTo} {this.props.amount} {this.props.coinIHave} </span>
             <span
               className="btn-simple"
               onClick={ () => this.setState({ isEditing: true }) }
@@ -146,7 +131,8 @@ function mapStateToProps(state) {
   return {
             coinIHave: state.coinIHave,
             coinIWant: state.coinIWant,
-            amount: state.amount
+            amount: state.amount,
+            buyOrSell: state.buyOrSell,
          }
 }
 
