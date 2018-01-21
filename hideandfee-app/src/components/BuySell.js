@@ -29,7 +29,7 @@ class BuySell extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isEditing != this.props.isEditing){
-      this.props.dispatch(setShowResults(nextState.isEditing))
+      this.props.dispatch(setShowResults(!nextState.isEditing))
     }
   }
 
