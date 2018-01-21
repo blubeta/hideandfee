@@ -184,53 +184,65 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
             });
         }
       } else {
-        if (toCoin == "USDT") {
+        if (toCoin == "USDT" || toCoin == "BTC") {
           /* fromCoin needs to go as second parameters as exchanges don't treat it 2 ways */
 
-          bittrexConversion("USDT", fromCoin)
-            .then(resp => {
-              console.log(`Rate for "USDT" -> ${fromCoin}: ${resp.rate}`);
+          let adjustedBTCAmount, BTCTradingFee;
 
+          bittrexConversion("BTC", fromCoin)
+            .then(resp => {
+              console.log(`Rate for ${fromCoin} -> BTC: ${resp.rate}`);
+
+              adjustedBTCAmount = resp.rate * fromAmount;
               feeAmount = fromAmount * fees.tradingFees.Bittrex.percent;
-              totalToCoins = calcTotalCoin(resp.rate, fromAmount - feeAmount);
+              BTCTradingFee = CoinToBTC(feeAmount, resp.rate);
 
               resultSteps.push(
                 formatResultSteps(
-                  `${fromCoin} to ${toCoin}`,
+                  `${fromCoin} to BTC`,
                   "Bittrex Trading",
-                  CoinToBTC(feeAmount, resp.rate),
-                  BTCToUSD(feeAmount, BTCToUSDRate),
-                  totalToCoins
+                  BTCTradingFee,
+                  BTCToUSD(BTCTradingFee, BTCToUSDRate),
+                  adjustedBTCAmount
                 )
               );
 
-              resolve(resultSteps);
+              if (toCoin == "BTC") {
+                resolve(resultSteps);
+              } else {
+                convertFromBTCtoUSDT(adjustedBTCAmount).then(
+                  resultingUSDAmount => {
+                    feeAmount = 0;
+
+                    resultSteps.push(
+                      formatResultSteps(
+                        "BTC to BTC",
+                        "Bittrex Withdrawal Fee",
+                        feeAmount,
+                        BTCToUSD(feeAmount, BTCToUSDRate),
+                        resultingUSDAmount
+                      )
+                    );
+
+                    feeAmount =
+                      resultingUSDAmount * fees.withdrawalFees.Coinbase.percent;
+
+                    resultSteps.push(
+                      formatResultSteps(
+                        `BTC to USD`,
+                        "Coinbase Deposit",
+                        USDToBTC(feeAmount, USDToBTCRate),
+                        feeAmount,
+                        resultingUSDAmount - feeAmount
+                      )
+                    );
+                    resolve(resultSteps);
+                  }
+                );
+              }
             })
             .catch(err => {
               reject("Error in convertFromCoinToCoin toCoin USDT");
-            });
-        } else if (toCoin == "BTC") {
-          bittrexConversion("BTC", fromCoin)
-            .then(resp => {
-              console.log(`Rate for "BTC" -> ${fromCoin}: ${resp.rate}`);
-
-              feeAmount = fromAmount * fees.tradingFees.Bittrex.percent;
-              totalToCoins = calcTotalCoin(resp.rate, fromAmount - feeAmount);
-
-              resultSteps.push(
-                formatResultSteps(
-                  `${fromCoin} to ${toCoin}`,
-                  "Bittrex Trading",
-                  CoinToBTC(feeAmount, resp.rate),
-                  BTCToUSD(feeAmount, BTCToUSDRate),
-                  totalToCoins
-                )
-              );
-
-              resolve(fromAmount * resp.rate);
-            })
-            .catch(err => {
-              reject("Error in convertFromCoinToCoin toCoin BTC");
             });
         } else {
           bittrexConversion(fromCoin, toCoin)
