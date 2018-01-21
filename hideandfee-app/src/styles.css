@@ -49,7 +49,7 @@ body{
 }
 
 .totals-footer {
-  @apply .w-full .flex .justify-around  border-b-2 border-t-2 .items-center;
+  @apply .w-full .flex .justify-around .fixed .pin-b border-b-2 border-t-2 .items-center;
   background-color: #161c23;
   border-color: #45b1a3;
   height: 10rem;
@@ -112,6 +112,7 @@ body{
 }
 .result-legend {
   @apply .flex .justify-between .items-center .px-8;
+  width: 75%;
 }
 .result-legend span{
   @apply .mx-4;
