@@ -65,7 +65,7 @@ class BuySell extends Component {
                   </div>
                 </div>
               </div>
-              <div className="card-dark full">
+              <div className="card-dark">
                 <span>
                   I have...
                 </span>

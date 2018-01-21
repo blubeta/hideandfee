@@ -16,19 +16,10 @@
   background-color: #161c23;
 }
 
-.card-dark.full {
-  @apply .m-0 border-b-2 border-t-2;
-  border-color: #45b1a3;
-}
-
 .exchange-card {
-  @apply .flex .justify-around .w-screen .m-4 .p-4 .relative;
+  @apply .flex .justify-around .w-full .my-4 .py-4 .relative;
   border-color: #45b1a3;
   background-color: #161c23;
-}
-
-.exchange-card:first-child {
-  @apply .mb-8;
 }
 
 .buy-sell-header {
@@ -41,7 +32,7 @@
 .conversion-totals {
   @apply .text-sm .absolute;
   color: #45b1a3;
-  right: 35px;
+  right: 18px;
   bottom: -10px;
 }
 
@@ -60,9 +51,8 @@
 }
 
 .arrows-container {
-  @apply .w-screen .flex .justify-center p-4 border-b-2 border-t-2;
+  @apply .w-screen .flex .justify-center p-4;
   background-color: #212932;
-  border-color: #45b1a3;
 }
 .arrows-icon {
   height: 40px;
