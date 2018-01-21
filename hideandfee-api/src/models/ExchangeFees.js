@@ -17,6 +17,7 @@ const withdrawalFees = {
     percent: 0.0149
   },
   Bittrex: {
+    USDT: 0.00,
     BTC: 0.001,
     LTC: 0.01,
     DOGE: 2.0,

@@ -101,9 +101,6 @@ class BuySell extends Component {
                     }
                   </select>
                   <input type="number" placeholder="Amount" className="styled-input" onChange={(e) => this.handleChange(null, null, e.target.value)}/>
-                  <span className="conversion-totals">
-                    {`Market Value = $${this.state.baseConversionUSD} (${this.state.baseConversion})`}
-                  </span>
                 </div>
                 <div className="arrows-container">
                   <div className="arrows-icon" />
