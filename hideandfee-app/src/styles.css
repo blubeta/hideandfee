@@ -1,6 +1,8 @@
 @tailwind preflight;
 @tailwind utilities;
-
+body{
+  font-family: 'Lato', sans-serif;
+}
 .app{
   @apply .min-h-screen;
   background-color: #212932;
@@ -63,10 +65,12 @@
 }
 
 .btn {
-  @apply .border-2 .bg-transparent .font-semibold .rounded .py-4 .px-8 .mx-2 .no-underline;
+  @apply .border-2 .bg-transparent .font-semibold .rounded .mx-2 .no-underline .flex .justify-center .items-center;
   border-color:#45b1a3;
   color:#45b1a3;
   transition: all .2s linear;
+  height: 4em;
+  width: 20em;
 }
 
 .btn:hover, .active-btn {
@@ -80,4 +84,20 @@
   @apply .text-sm .underline .absolute;
   color: #45b1a3;
   right: 25px;
+}
+.home-title{
+  font-family: 'Lobster', cursive;
+  font-size: 5rem;
+}
+.subtitle{
+  text-align:center;
+  font-size:1.2rem;
+  margin:1rem 0;
+}
+.hf-icon{
+  background-image: url('./assets/icon.png');
+  background-size:contain;
+  height:13rem;
+  width: 13rem;
+  margin: 0 auto;
 }

@@ -5,16 +5,17 @@ class Home extends Component {
   render() {
     return (
       <div className="flex flex-col">
+      <div className="hf-icon"></div>
         <div className="card h-24">
-          <span className="text-4xl"> Hide&Fee </span>
-          <span className="text-base"> Really enticing copy about our app!  </span>
+          <span className="text-4xl home-title"> Hide&Fee </span>
+          <span className="text-base subtitle"> Find the hidden fee in every cryptocurrency transaction. </span>
         </div>
         <div className="card">
-          <Link to="/dashboard" className="btn">
-            I want to buy an alt-coin
+          <Link to="/dashboard" className="btn mb-8">
+            Buy a Coin
           </Link>
           <Link to="/dashboard" className="btn">
-            I want to sell an alt-coin
+            Sell a Coin
           </Link>
         </div>
       </div>
