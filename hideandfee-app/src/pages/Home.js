@@ -8,7 +8,7 @@ class Home extends Component {
       <div className="hf-icon"></div>
         <div className="card h-24">
           <span className="text-4xl home-title"> Hide&Fee </span>
-          <span className="text-base subtitle"> Find the hidden fee in every cryptocurrency transaction. </span>
+          <span className="text-base subtitle"> Find the hidden fees in every cryptocurrency transaction.</span>
         </div>
         <div className="card">
           <Link to="/dashboard" className="btn mb-8">

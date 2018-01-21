@@ -83,7 +83,7 @@ class BuySell extends Component {
               </div>
               <div className="card-dark">
                 <span>
-                  I have...
+                  I Have
                 </span>
                 <div className="exchange-card" style={{ marginBottom: '2rem' }}>
                   <select className="styled-input" placeholder="Coin" onChange={(e) => this.handleChange(e.target.value, null, null)}>
@@ -102,7 +102,7 @@ class BuySell extends Component {
                   <div className="arrows-icon" />
                 </div>
                 <span className="mt-4">
-                  I want...
+                  I Want
                 </span>
                 <div className="exchange-card">
                   <select className="styled-input" placeholder="Coin" onChange={(e) => this.handleChange(null, e.target.value, null)}>
