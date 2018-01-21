@@ -187,7 +187,7 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
         if (toCoin == "USDT" || toCoin == "BTC") {
           /* fromCoin needs to go as second parameters as exchanges don't treat it 2 ways */
 
-          let adjustedBTCAmount, BTCTradingFee;
+          let adjustedBTCAmount, adjustedUSDAmount, BTCTradingFee;
 
           bittrexConversion("BTC", fromCoin)
             .then(resp => {
@@ -212,7 +212,10 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
               } else {
                 convertFromBTCtoUSDT(adjustedBTCAmount).then(
                   resultingUSDAmount => {
-                    feeAmount = 0;
+                    feeAmount = fees.withdrawalFees.Bittrex.BTC;
+
+                    adjustedUSDAmount =
+                      resultingUSDAmount - BTCToUSD(feeAmount, BTCToUSDRate);
 
                     resultSteps.push(
                       formatResultSteps(
@@ -220,12 +223,13 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
                         "Bittrex Withdrawal Fee",
                         feeAmount,
                         BTCToUSD(feeAmount, BTCToUSDRate),
-                        resultingUSDAmount
+                        adjustedUSDAmount
                       )
                     );
 
                     feeAmount =
-                      resultingUSDAmount * fees.withdrawalFees.Coinbase.percent;
+                      resultingUSDAmount *
+                      fees.depositFees.Coinbase.coinPercent;
 
                     resultSteps.push(
                       formatResultSteps(
@@ -233,7 +237,7 @@ let convertFromCoinToCoin = (fromCoin, fromAmount, toCoin) => {
                         "Coinbase Deposit",
                         USDToBTC(feeAmount, USDToBTCRate),
                         feeAmount,
-                        resultingUSDAmount - feeAmount
+                        adjustedUSDAmount
                       )
                     );
                     resolve(resultSteps);
