@@ -1,7 +1,8 @@
 const depositFees = {
   Coinbase: {
     ccPercent: 0.0399,
-    achPercent: 0.0149
+    achPercent: 0.0149,
+    coinPercent: 0.0
   }
 };
 
