@@ -103,6 +103,7 @@ body{
   height: 4em;
   width: 20em;
   cursor: pointer;
+  background-color: #212932;
   z-index: 1;
 }
 

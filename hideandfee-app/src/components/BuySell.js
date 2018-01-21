@@ -38,7 +38,9 @@ class BuySell extends Component {
   submitSteps = () => {
     const stepsPayload = [this.props.coinIHave, this.props.coinIWant, this.props.amount]
     if (stepsPayload.every((val) => (val))) {
-      getSteps(...stepsPayload).then((resp) => { this.props.dispatch(setSteps(resp)) })
+      getSteps(...stepsPayload)
+        .then((resp) => { this.props.dispatch(setSteps(resp)) })
+        .catch((err) => { this.props.dispatch(setSteps([{title: "There Was Some Error"}])) })
       this.setState({ isEditing: false })
     }
   }
