@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import { isHardwareWallet } from '../Redux/actions'
+import { connect }        from 'react-redux';
+import getSteps           from '../utils/API'
+import { setSteps,
+         setCoinIHave,
+         setCoinIWant,
+         setAmount,
+         }           from '../Redux/actions'
 
 class BuySell extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       transaction: null,
@@ -16,6 +24,19 @@ class BuySell extends Component {
       exchangeConversion: 0,
       isEditing: true,
     }
+  }
+
+  submitSteps = () => {
+    const stepsPayload = [this.props.coinIHave, this.props.coinIWant, this.props.amount]
+    if (stepsPayload.every((val) => (val))) {
+      getSteps(...stepsPayload).then((resp) => { this.props.dispatch(setSteps(resp)) })
+    }
+  }
+
+  handleChange = (...values) => {
+    values[0] || this.props.coinIHave ? this.props.dispatch(setCoinIHave(values[0]  || this.props.coinIHave)) : null
+    values[1] || this.props.coinIWant ? this.props.dispatch(setCoinIWant(values[1]  || this.props.coinIWant)) : null
+    values[2] || this.props.amount    ? this.props.dispatch(setAmount(values[2]     || this.props.amount))    : null
   }
 
   render() {
@@ -49,13 +70,14 @@ class BuySell extends Component {
                   I have...
                 </span>
                 <div className="exchange-card" style={{ marginBottom: '2rem' }}>
-                  <select className="styled-input" placeholder="Coin">
+                  <select className="styled-input" placeholder="Coin" onChange={(e) => this.handleChange(e.target.value, null, null)}>
                     <option>Select a Coin</option>
-                    <option> WEEN </option>
-                    <option> AUTO </option>
-                    <option> MACHINE </option>
+                    <option> BTC </option>
+                    <option> ETH </option>
+                    <option> USDT </option>
+                    <option> XRP </option>
                   </select>
-                  <input type="number" placeholder="Amount" className="styled-input" />
+                  <input type="number" placeholder="Amount" className="styled-input" onChange={(e) => this.handleChange(null, null, e.target.value)}/>
                   <span className="conversion-totals">
                     {`Market Value = $${this.state.baseConversionUSD} (${this.state.baseConversion})`}
                   </span>
@@ -67,11 +89,12 @@ class BuySell extends Component {
                   I want...
                 </span>
                 <div className="exchange-card">
-                  <select className="styled-input" placeholder="Coin">
+                  <select className="styled-input" placeholder="Coin" onChange={(e) => this.handleChange(null, e.target.value, null)}>
                     <option>Select a Coin</option>
-                    <option> WEEN </option>
-                    <option> AUTO </option>
-                    <option> MACHINE </option>
+                    <option> XRP </option>
+                    <option> DNT </option>
+                    <option> MEME </option>
+                    <option> USDT </option>
                   </select>
                   <input
                     type="number"
@@ -86,9 +109,9 @@ class BuySell extends Component {
               </div>
               <div
                 className="active-btn flex justify-center m-8"
-                onClick={ () => this.setState({ isEditing: false }) }
+                onClick={ () => { this.submitSteps() } }
               >
-                <span> Finish </span>
+                <span> Calculate </span>
               </div>
             </div>
           ) : (
@@ -107,4 +130,12 @@ class BuySell extends Component {
   }
 }
 
-export default BuySell;
+function mapStateToProps(state) {
+  return {
+            coinIHave: state.coinIHave,
+            coinIWant: state.coinIWant,
+            amount: state.amount
+         }
+}
+
+export default connect(mapStateToProps)(BuySell);

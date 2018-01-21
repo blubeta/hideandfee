@@ -1,13 +1,33 @@
 import React, { Component } from 'react'
+import redux              from 'redux'
+import { connect }        from 'react-redux';
 
 class Results extends Component {
+  constructor(props){
+      super(props)
+  }
+
   render(){
     return(
       <div>
-        You're Rich!
+        { this.props.steps ? this.props.steps.map((step) => {
+
+            return (
+              <div>
+                ISSA MEME
+              </div>
+            )
+          })
+            :
+          []
+        }
       </div>
     )
   }
 }
 
-export default Results;
+function mapStateToProps(state) {
+  return { steps: state.steps }
+}
+
+export default connect(mapStateToProps)(Results);

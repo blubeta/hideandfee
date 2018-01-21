@@ -1,10 +1,10 @@
-prodState = {
-  total: 0.00
+const prodState = {
+  total: 0.00,
   isHardwareWallet: false,
   coinIHave: "",
   coinIWant: "",
   amount: 0,
-  steps: [], /*{title: "", description: "", btcPrice: 0, fiatPrice: 0}*/
+  steps: [],
 }
 
 const reducer = (state = prodState, { type, ...action }) => {
@@ -17,27 +17,27 @@ const reducer = (state = prodState, { type, ...action }) => {
     case "SET_HARDWARE_WALLET":
       return {
         ...state,
-        total: action.total
+        isHardwareWallet: action.isHardwareWallet
       };
     case "SET_COIN_I_HAVE":
       return {
         ...state,
-        total: action.total
+        coinIHave: action.coinIHave
       };
     case "SET_COIN_I_WANT":
       return {
         ...state,
-        total: action.total
+        coinIWant: action.coinIWant
       };
     case "SET_STEPS":
       return {
         ...state,
-        total: action.total
+        steps: action.steps
       };
     case "SET_AMOUNT":
       return {
         ...state,
-        total: action.total
+        amount: action.amount
       };
     default:
       return state;

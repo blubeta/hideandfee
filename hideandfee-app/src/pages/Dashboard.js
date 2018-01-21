@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import BuySell from '../components/BuySell.js'
-import Results from '../components/Results.js'
+import BuySell from '../components/BuySell';
+import Results from '../components/Results';
 
 class Dashboard extends Component {
   render() {

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import logger from 'redux-logger';
 
-import reducers from "./reducer";
+import reducer from "./reducer";
 
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION__ || (() => noop => noop);
 
@@ -24,7 +24,7 @@ const configureStore = (initialState = {}, history) => {
   if (process.env.APP_ENV !== 'production') enhancers.push(devtools())
 
   const store = createStore(
-    reducers,
+    reducer,
     initialState,
     compose(...enhancers)
   );
