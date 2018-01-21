@@ -30,6 +30,7 @@ class BuySell extends Component {
     const stepsPayload = [this.props.coinIHave, this.props.coinIWant, this.props.amount]
     if (stepsPayload.every((val) => (val))) {
       getSteps(...stepsPayload).then((resp) => { this.props.dispatch(setSteps(resp)) })
+      this.setState({ isEditing: false })
     }
   }
 
@@ -42,7 +43,8 @@ class BuySell extends Component {
   render() {
 
     const buyOrSell = this.state.transaction ? this.state.transaction : '...';
-
+    const withOrTo  = this.state.transaction && this.state.transaction == 'buy' ? 'with' : 'to';
+    console.log(this.state.isEditing)
     return (
       <div>
         {
@@ -116,7 +118,7 @@ class BuySell extends Component {
             </div>
           ) : (
           <div className="buy-sell-header">
-            <span> BuyOrSell 234 XRP with BTC </span>
+            <span> {buyOrSell} {this.props.coinIWant} {withOrTo} {this.props.amount} {this.props.coinIHave} </span>
             <span
               className="btn-simple"
               onClick={ () => this.setState({ isEditing: true }) }
