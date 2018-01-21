@@ -2,7 +2,7 @@
 @tailwind utilities;
 
 .app{
-  @apply .h-screen;
+  @apply .min-h-screen;
   background-color: #212932;
   color: white;
 }
@@ -22,9 +22,27 @@
 }
 
 .exchange-card {
-  @apply .flex .justify-around .w-screen .m-4 .p-4;
+  @apply .flex .justify-around .w-screen .m-4 .p-4 .relative;
   border-color: #45b1a3;
   background-color: #161c23;
+}
+
+.exchange-card:first-child {
+  @apply .mb-8;
+}
+
+.buy-sell-header {
+  @apply border-b-2 border-t-2 .flex .justify-center .items-center .relative;
+  background-color: #161c23;
+  border-color: #45b1a3;
+  height: 75px;
+}
+
+.conversion-totals {
+  @apply .text-sm .absolute;
+  color: #45b1a3;
+  right: 35px;
+  bottom: -10px;
 }
 
 .styled-input{
@@ -68,7 +86,8 @@
   color: white;
 }
 
-.text-field * {
+.btn-simple {
+  @apply .text-sm .underline .absolute;
   color: #45b1a3;
-  border-color: #45b1a3;
+  right: 25px;
 }
