@@ -40,7 +40,7 @@ body{
 .conversion-totals {
   @apply .text-sm .absolute;
   color: #45b1a3;
-  right: 18px;
+  right: 5%;
   bottom: -10px;
   z-index: 1;
 }
@@ -85,6 +85,7 @@ body{
   @apply .flex .flex-col .px-8 .items-center .my-4;
   height: 75px;
   width: 75%;
+  max-width: 740px;
   background-color: #161c23;
 }
 .result-row-section {
