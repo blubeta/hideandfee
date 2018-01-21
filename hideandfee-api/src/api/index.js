@@ -14,10 +14,10 @@ export default ({ config, db }) => {
     coinConverter
       .convertFromCoinToCoin(fromCoin, fromAmount, toCoin)
       .then(resp => {
-        res.json(resp);
+        res.status(200).json(resp);
       })
       .catch(err => {
-        res.json({ err: err });
+        res.status(400).json({ err: err });
       });
   });
 
