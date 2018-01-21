@@ -2,26 +2,31 @@
 @tailwind utilities;
 body{
   font-family: 'Lato', sans-serif;
+  z-index: 1;
 }
 .app{
   @apply .min-h-screen;
   background-color: #212932;
   color: white;
+  z-index: 1;
 }
 
 .card {
   @apply .flex .flex-col .justify-around .items-center .m-4 .p-4;
+  z-index: 1;
 }
 
 .card-dark {
   @apply .card;
   background-color: #161c23;
+  z-index: 1;
 }
 
 .exchange-card {
   @apply .flex .justify-around .w-full .my-4 .py-4 .relative;
   border-color: #45b1a3;
   background-color: #161c23;
+  z-index: 1;
 }
 
 .buy-sell-header {
@@ -29,6 +34,7 @@ body{
   background-color: #161c23;
   border-color: #45b1a3;
   height: 75px;
+  z-index: 1;
 }
 
 .conversion-totals {
@@ -36,6 +42,7 @@ body{
   color: #45b1a3;
   right: 18px;
   bottom: -10px;
+  z-index: 1;
 }
 
 .styled-input{
@@ -47,14 +54,17 @@ body{
   text-align: right;
   width: 40%;
   transition: all .1s linear;
+  z-index: 1;
 }
 .styled-input:focus{
   border-bottom: 3px solid #45b1a3;
+  z-index: 1;
 }
 
 .arrows-container {
   @apply .w-screen .flex .justify-center .p-4;
   background-color: #212932;
+  z-index: 1;
 }
 .arrows-icon {
   height: 40px;
@@ -62,6 +72,7 @@ body{
   background-image: url('./assets/resize.svg');
   background-repeat: no-repeat;
   background-size: contain;
+  z-index: 1;
 }
 
 .results-header {
@@ -69,14 +80,17 @@ body{
   color: #45b1a3;
   font-size: 2em;
   text-decoration: underline;
+  z-index: 1;
 }
 
 .result-row {
   @apply .w-full .flex .flex-col .px-4;
   height: 100px;
+  z-index: 1;
 }
 .result-row-section {
   @apply .w-full .flex .justify-center;
+  z-index: 1;
 }
 
 .btn {
@@ -87,6 +101,7 @@ body{
   height: 4em;
   width: 20em;
   cursor: pointer;
+  z-index: 1;
 }
 
 .btn:hover, .active-btn {
@@ -94,25 +109,30 @@ body{
   background-color: #45b1a3;
   border-color: #45b1a3;
   color: white;
+  z-index: 1;
 }
 .active-btn.disabled {
   opacity: .6;
   cursor: not-allowed;
+  z-index: 1;
 }
 .btn-simple {
   @apply .text-sm .underline .absolute;
   color: #45b1a3;
   right: 25px;
   cursor: pointer;
+  z-index: 1;
 }
 .home-title{
   font-family: 'Lobster', cursive;
   font-size: 5rem;
+  z-index: 1;
 }
 .subtitle{
   text-align:center;
   font-size:1.2rem;
   margin:1rem 0;
+  z-index: 1;
 }
 .hf-icon{
   background-image: url('./assets/icon.png');
@@ -120,4 +140,10 @@ body{
   height:13rem;
   width: 13rem;
   margin: 0 auto;
+  z-index: 1;
+}
+
+.particles {
+  position: absolute;
+  z-index: 0;
 }
