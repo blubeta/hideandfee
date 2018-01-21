@@ -112,22 +112,15 @@ class BuySell extends Component {
                     <option> MEME </option>
                     <option> USDT </option>
                   </select>
-                  <input
-                    type="number"
-                    value={ this.state.exchangeAmount }
-                    className="styled-input"
-                    disabled
-                  />
-                  <span className="conversion-totals">
-                    {`Market Value = $${this.state.exchangeConversionUSD} (${this.state.exchangeConversion})`}
-                  </span>
                 </div>
               </div>
-              <div
-                className={`active-btn flex justify-center m-8 ${ isDisabled ? 'disabled' : '' }`}
-                onClick={ () => { this.submitSteps() } }
-              >
-                <span> Calculate </span>
+              <div className="w-full flex justify-center">
+                <div
+                  className={`active-btn flex justify-center m-8 ${ isDisabled ? 'disabled' : '' }`}
+                  onClick={ () => { this.submitSteps() } }
+                >
+                  <span> Calculate </span>
+                </div>
               </div>
             </div>
           ) : (

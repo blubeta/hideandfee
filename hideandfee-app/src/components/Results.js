@@ -22,7 +22,7 @@ class Results extends Component {
                 </div>
                 <div className="result-row-section">
                   <span> { step.description } </span>
-                  <span> { step.btcPrice } </span>
+                  <span> { step.btcPrice.toFixed(4) } </span>
                 </div>
               </div>
             )
