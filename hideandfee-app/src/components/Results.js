@@ -37,10 +37,10 @@ class Results extends Component {
           })
         }
         <div className="totals-footer">
-          <span>Total Fees </span>
+          <span style={{fontSize: "2.5rem", fontFamily: "Lobster"}}>Total Fees </span>
           {
             totalFeesFiat && totalFeesBTC ?
-              <span> {`$${totalFeesFiat.toFixed(2)} (${totalFeesBTC.toFixed(4)} BTC)`} </span>
+              <span style={{fontSize: "1.5rem"}}> {`$${totalFeesFiat.toFixed(2)}`} <br/> {`(${totalFeesBTC.toFixed(4)} BTC)`} </span>
             :
               <span />
           }
