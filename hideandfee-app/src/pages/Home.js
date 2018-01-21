@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import TextField from 'material-ui/TextField';
-
 class Home extends Component {
   render() {
     return (
@@ -19,10 +17,6 @@ class Home extends Component {
             I want to sell an alt-coin
           </Link>
         </div>
-        <TextField
-          floatingLabelText="hello there"
-          onChange={console.log("change")}
-        />
       </div>
     );
   }

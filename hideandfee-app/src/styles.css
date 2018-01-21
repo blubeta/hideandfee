@@ -2,13 +2,13 @@
 @tailwind utilities;
 
 .app{
-  @apply .h-screen .m-4 .mt-8;
+  @apply .h-screen;
   background-color: #212932;
   color: white;
 }
 
 .card {
-  @apply .flex .flex-col .justify-around .items-center .m-4;
+  @apply .flex .flex-col .justify-around .items-center .m-4 .p-4;
 }
 
 .card-dark {
@@ -16,14 +16,48 @@
   background-color: #161c23;
 }
 
+.card-dark.full{ @apply .m-0; }
+
+.exchange-card {
+  @apply .flex .justify-around .w-screen .m-4 .p-4;
+  border-color: #45b1a3;
+  background-color: #161c23;
+}
+
+.styled-input{
+  background: #161c23;
+  outline: none;
+  border-bottom: 1px solid grey;
+  color: white;
+  padding: 5px;
+  text-align: right;
+  width: 40%;
+  transition: all .1s linear;
+}
+.styled-input:focus{
+  border-bottom: 3px solid #45b1a3;
+}
+
+.arrows-container {
+  @apply .w-screen .flex .justify-center p-4;
+  background-color: #212932;
+}
+.arrows-icon {
+  height: 40px;
+  width: 40px;
+  background-image: url('./assets/resize.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .btn {
-  @apply .border-2 .bg-transparent .font-semibold .rounded .py-4 .px-8 .m-4 .no-underline;
+  @apply .border-2 .bg-transparent .font-semibold .rounded .py-4 .px-8 .mx-2 .no-underline;
   border-color:#45b1a3;
   color:#45b1a3;
   transition: all .2s linear;
 }
 
-.btn:hover {
+.btn:hover, .active-btn {
   @apply .btn;
   background-color: #45b1a3;
   border-color: #45b1a3;
