@@ -9,6 +9,8 @@ import { setSteps,
          setShowResults,
          }           from '../Redux/actions'
 
+import withdrawalFees from '../../../hideandfee-api/src/models/ExchangeFees'
+
 class BuySell extends Component {
 
   constructor(props) {
@@ -45,6 +47,10 @@ class BuySell extends Component {
     values[0] || this.props.coinIHave ? this.props.dispatch(setCoinIHave(values[0]  || this.props.coinIHave)) : null
     values[1] || this.props.coinIWant ? this.props.dispatch(setCoinIWant(values[1]  || this.props.coinIWant)) : null
     values[2] || this.props.amount    ? this.props.dispatch(setAmount(values[2]     || this.props.amount))    : null
+  }
+
+  currencyList = () => {
+    return Object.keys(withdrawalFees.withdrawalFees.Bittrex) || []
   }
 
   render() {
@@ -88,10 +94,9 @@ class BuySell extends Component {
                 <div className="exchange-card" style={{ marginBottom: '2rem' }}>
                   <select className="styled-input" placeholder="Coin" onChange={(e) => this.handleChange(e.target.value, null, null)}>
                     <option>Select a Coin</option>
-                    <option> BTC </option>
-                    <option> ETH </option>
-                    <option> USDT </option>
-                    <option> XRP </option>
+                    {
+                      this.currencyList().map(( currency, index ) => (<option key={index}>{currency}</option>))
+                    }
                   </select>
                   <input type="number" placeholder="Amount" className="styled-input" onChange={(e) => this.handleChange(null, null, e.target.value)}/>
                   <span className="conversion-totals">
@@ -107,10 +112,9 @@ class BuySell extends Component {
                 <div className="exchange-card">
                   <select className="styled-input" placeholder="Coin" onChange={(e) => this.handleChange(null, e.target.value, null)}>
                     <option>Select a Coin</option>
-                    <option> XRP </option>
-                    <option> DNT </option>
-                    <option> MEME </option>
-                    <option> USDT </option>
+                    {
+                      this.currencyList().map(( currency, index ) => (<option key={index}>{currency}</option>))
+                    }
                   </select>
                 </div>
               </div>
