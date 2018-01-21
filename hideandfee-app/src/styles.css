@@ -34,7 +34,15 @@ body{
   background-color: #161c23;
   border-color: #45b1a3;
   height: 75px;
+  text-transform: capitalize;
   z-index: 1;
+}
+
+.totals-footer {
+  @apply .w-full .flex .justify-around .fixed .pin-b border-b-2 border-t-2 .items-center;
+  background-color: #161c23;
+  border-color: #45b1a3;
+  height: 75px;
 }
 
 .conversion-totals {

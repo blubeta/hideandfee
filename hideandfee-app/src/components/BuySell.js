@@ -72,7 +72,7 @@ class BuySell extends Component {
         {
           this.state.isEditing ? (
             <div className="flex flex-col">
-            <span className="text-4xl m-8 text-center"> {`What cryptocurrency`} <br/> {`are you looking to ${buyOrSell || "buy"}`}? </span>
+              <span className="text-4xl m-8 text-center"> {`What cryptocurrency`} <br/> {`are you looking to ${buyOrSell || "buy"}`}? </span>
               <div className="card-dark">
                 <span>
                   I Have

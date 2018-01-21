@@ -8,6 +8,11 @@ class Results extends Component {
   }
 
   render(){
+    const totalFeesBTC = this.props.steps && this.props.steps.reduce((acc, step) => {return acc + step.btcPrice}, 0);
+    const totalFeesFiat = this.props.steps && this.props.steps.reduce((acc, step) => {return acc + step.fiatPrice}, 0);
+
+    console.log(`btcFees: ${totalFeesBTC} ... fiatFees: ${totalFeesFiat}`)
+
     return(
       <div className="flex flex-col items-center">
         <span className="result-header"> Results </span>
@@ -15,9 +20,10 @@ class Results extends Component {
           <span className="text-left"> Trade Details </span>
           <span className="text-right"> Fees </span>
         </div>
-        { this.props.steps && this.props.steps.map((step) => {
+        { this.props.steps && this.props.steps
+            .map((step, index) => {
             return (
-              <div className="result-row">
+              <div key={index} className="result-row">
                 <div className="result-row-section">
                   <span className="text-left"> { step.title } </span>
                   <span className="text-right"> { `$${step.fiatPrice.toFixed(2)}` } </span>
@@ -30,6 +36,15 @@ class Results extends Component {
             )
           })
         }
+        <div className="totals-footer">
+          <span>Total Fees </span>
+          {
+            totalFeesFiat && totalFeesBTC ?
+              <span> {`$${totalFeesFiat.toFixed(2)} (${totalFeesBTC.toFixed(4)} BTC)`} </span>
+            :
+              <span />
+          }
+        </div>
       </div>
     )
   }
