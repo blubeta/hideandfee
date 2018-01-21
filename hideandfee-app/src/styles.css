@@ -53,7 +53,7 @@ body{
 }
 
 .arrows-container {
-  @apply .w-screen .flex .justify-center p-4;
+  @apply .w-screen .flex .justify-center .p-4;
   background-color: #212932;
 }
 .arrows-icon {
@@ -76,7 +76,7 @@ body{
   height: 100px;
 }
 .result-row-section {
-  @apply .w-full .flex .justify-center .items-between;
+  @apply .w-full .flex .justify-center;
 }
 
 .btn {
